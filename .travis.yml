@@ -11,15 +11,17 @@ install:
 # - yarn global add codecov
 cache:
   yarn: true
+  npm: true
   directories:
-  - node_modules
+  - backend/node_modules
+  - frontend/node_modules
 script:
 - echo 'Testing Backend Project'
 - cd ./backend
 - yarn install && yarn test
 - cd ../frontend
 - echo 'Testing FE Project'
-- yarn install && yarn test
+- yarn install && yarn test:ci
 # after_success:
 # - cd ../broskichat-app
 # - CI=true yarn coverage && codecov
