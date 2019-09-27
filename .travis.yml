@@ -18,12 +18,12 @@ cache:
 script:
 - echo 'Testing Backend Project'
 - cd ./backend
-- yarn install && yarn test
+- yarn install && yarn test:cov
 - cd ../frontend
 - echo 'Testing FE Project'
 - yarn install && yarn test:ci
-# after_success:
+after_success:
 # - cd ../broskichat-app
-# - CI=true yarn coverage && codecov
+- bash <(curl -s https://codecov.io/bash)
 # notifications:
   # slack: broskitownusa:DPJ68dsuWDAtrLTx1OyvgwVu
