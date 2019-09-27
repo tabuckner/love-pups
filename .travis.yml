@@ -8,7 +8,7 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -y -qq yarn
 install:
-- yarn global add codecov
+# - yarn global add codecov
 cache:
   yarn: true
   npm: true
@@ -24,6 +24,6 @@ script:
 - yarn install && yarn test:ci
 after_success:
 # - cd ../broskichat-app
-- yarn codecov
+- bash <(curl -s https://codecov.io/bash)
 # notifications:
   # slack: broskitownusa:DPJ68dsuWDAtrLTx1OyvgwVu
