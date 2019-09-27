@@ -1,76 +1,75 @@
-# Love Pups Backend
-Backend for Love Pups project.
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
 
-## API
-### Random Pup Endpoint
-In order to create each pup card that can be swiped we will need an Endpoint that will return a dog image and dog biography.
+[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
+[travis-url]: https://travis-ci.org/nestjs/nest
+[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
+[linux-url]: https://travis-ci.org/nestjs/nest
+  
+  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
+<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
+<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
+  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-#### Dog Entity
-Our Dog entity will likely grow overtime but to start we need the following at a minimum:
-```json
-{
-  "id": "string",
-  "name": "string",
-  "breed": "string", // NOTE: Might be more than a string
-  "age": "number",
-  "gender": "male|female|non-binary",
-  "bio": "string"
-}
+## Description
+
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Installation
+
+```bash
+$ npm install
 ```
 
-#### 3P APIs
-##### Dog API
-The Dog api is a free image API that can offer random dog images with minimal breed information, or images for specific breeds/sub-breeds.
+## Running the app
 
-To start, we can use the [random image endpoint](https://dog.ceo/dog-api/documentation/random) and parse the URL returned in the message to get the breed information:
+```bash
+# development
+$ npm run start
 
-URL: `https://dog.ceo/api/breeds/image/random`
-Response:
-```json
-{
-  "message": "https://images.dog.ceo/breeds/spaniel-welsh/n02102177_3374.jpg",
-  "status": "success"
-}
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-##### The Dog API
-We can use this API to get information on specific dog breeds to help build out the Dog Entity.
+## Test
 
-URL: `https://api.thedogapi.com/v1/breeds/search?q=keeshond`
-Response:
-```json
-[
-  {
-    "bred_for": "Barge watchdog",
-    "breed_group": "Non-Sporting",
-    "height": {
-      "imperial": "17 - 18",
-      "metric": "43 - 46"
-    },
-    "id": 142,
-    "life_span": "12 - 15 years",
-    "name": "Keeshond",
-    "temperament": "Agile, Obedient, Playful, Quick, Sturdy, Bright",
-    "weight": {
-      "imperial": "35 - 45",
-      "metric": "16 - 20"
-    }
-  }
-]
-````
+```bash
+# unit tests
+$ npm run test
 
-#### Proprietary APIs
-##### Biography API
-We need a way of creating a unique(-ish) biography that is 
+# e2e tests
+$ npm run test:e2e
 
-### Persistence Layer
+# test coverage
+$ npm run test:cov
+```
 
-### Users
-* We will allow anonymous users to have access to a 'rate limited' usage of the app
-* We want to encourage users to eventually provide email address etc
-* We want the user's 'history' to be made available to them at that time, including everything that happened while they were anonymous
-* This means that we will want to track how the user responded to each 'dog' and the 'dog' object itself
-  * There is the potential for this to persist each 'dog' object and reuse between users
-  * This means that we can create a fictional dog entity and eventually present that entity's stats (likes dislikes etc) to anyone we want
-* Maybe we want authenticated users to select a breed preference?
-  * Does this limit our data-set? (probably)
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+  Nest is [MIT licensed](LICENSE).
