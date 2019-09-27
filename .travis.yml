@@ -17,6 +17,9 @@ script:
 - echo 'Testing Backend Project'
 - cd ./backend
 - yarn install && yarn test
+- cd ../frontend
+- echo 'Testing FE Project'
+- yarn install && yarn test
 # after_success:
 # - cd ../broskichat-app
 # - CI=true yarn coverage && codecov
