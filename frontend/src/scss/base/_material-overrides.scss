@@ -1,0 +1,7 @@
+/**
+ * @angular/material Overrides
+**/
+.mat-bottom-sheet-container, .mat-bottom-sheet-container-large, .mat-bottom-sheet-container-medium, .mat-bottom-sheet-container-xlarge {
+  border-top-right-radius: 18px !important;
+  border-top-left-radius: 18px !important;
+}
