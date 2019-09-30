@@ -14,7 +14,17 @@ Our Dog entity will likely grow overtime but to start we need the following at a
   "breed": "string", // NOTE: Might be more than a string
   "age": "number",
   "gender": "male|female|non-binary",
-  "bio": "string"
+  "bio": {
+    "hobbies": [
+      "string",
+      "..."
+    ],
+    "dislikes": [
+      "string",
+      "..."
+    ],
+    "text": "string"
+  }
 }
 ```
 
