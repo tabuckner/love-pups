@@ -7,7 +7,7 @@ before_install:
 - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 - sudo apt-get update -qq
 - sudo apt-get install -y -qq yarn
-install:
+install: 
 cache:
   yarn: true
   npm: true
@@ -23,5 +23,7 @@ script:
 - yarn install && yarn test:ci
 after_success:
 - bash <(curl -s https://codecov.io/bash)
-# notifications:
-  # slack: broskitownusa:DPJ68dsuWDAtrLTx1OyvgwVu
+notifications:
+  slack:
+    rooms:
+      secure: ThPuj5DYP3FuaENhDHzMaZ7AGWJIAvAxzbPGvcWsJyWtTB6++/ymzIaoAwjun6oZY30m+VhJ4owK1wMGE3KolWhcrwJYBeD7CReiYOLx5gRd2NSzKBGhfR6w4NZWY2npV8kAb1mzKqPm3d9Tm93aeqnvWSWJUNxbwI6sxfJqao/RoPgFLaEzx7bfOUlaFwQHupezXtXrXHhk35F3+S0nIcgc/G4O12la7LAz2q5YZ3ir5M6la5eMj8heppKSc74OlcGczGjdvHvwGtfqb3HOCOoR4gUzMORq9oXyaWCildjz8OF/e2a7l+uCiV2ekocpOvD2CaWG3IAWugRcJ/0ciEPJqO5hBN7/z1gx0SWQJ/C3QlMLcaZKlsNhq/WMLOLqLFBySH4RGPoA7kE03ke0Q/eA8h1I2NP+3+hsHaiR6TeYPAG5RJ0mRkms1zcHOu3uCFEqqeAVNnsVNoVF74qECcs9tAlhPDlh6KPaZe39uU3NC7JXoYJqk6MSpzCcf6ixhVT3Oke0ekVJHsh1naZ/bw0fmE66Ob9oWk9yg0p3Hj8xlf3qtaBwotYLjeSlgzT4UPiPAtsQ/OJRUx0ldY0QR7IeZNr2VOrLU2rDJ8IX/yBVbts52NPsaJc8km2p7bcm4O7fXj5BV+PYLXAhs1WrJZpPgfrHWehO5Tj9a3lhcgI=
