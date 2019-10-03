@@ -2,9 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { Biography } from './biography.interface';
 import { HOBBIES } from '../shared/constants/hobbies';
 import { DISLIKES } from '../shared/constants/dislikes';
+import { TranslationService } from 'src/translation/translation.service';
 
 @Injectable()
 export class BiographyService {
+
+  constructor(private translationService: TranslationService) {}
 
   public getBio(): Biography {
     const hobbies = this.getHobbies();
@@ -38,7 +41,12 @@ export class BiographyService {
   }
 
   private getBioText(hobbies: string[], dislikes: string[]): string {
-    return `${this.getHobbiesString(hobbies)} ${this.getDislikesString(dislikes)}`;
+    const bioText = `${this.getHobbiesString(hobbies)} ${this.getDislikesString(dislikes)}`;
+    return this.translateText(bioText);
+  }
+
+  private translateText(text: string): string {
+    return this.translationService.translate(text);
   }
 
   private getHobbiesString(hobbies: string[]): string {
