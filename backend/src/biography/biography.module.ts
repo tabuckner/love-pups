@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
 import { BiographyService } from './biography.service';
-// import { HOBBIES } from 'src/shared/constants/hobbies';
+import { TranslationModule } from '../translation/translation.module';
 
 @Module({
+  imports: [
+    TranslationModule,
+  ],
   providers: [
+    BiographyService,
+  ],
+  exports: [
     BiographyService,
   ],
 })

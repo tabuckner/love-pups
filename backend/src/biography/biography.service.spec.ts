@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BiographyService } from './biography.service';
+import { TranslationModule } from '../translation/translation.module';
 import { HOBBIES } from '../shared/constants/hobbies';
 import { DISLIKES } from '../shared/constants/dislikes';
 
@@ -10,6 +11,9 @@ describe('BiographyService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         BiographyService,
+      ],
+      imports: [
+        TranslationModule,
       ],
     }).compile();
 
@@ -58,6 +62,46 @@ describe('BiographyService', () => {
         expect(typeof val).toBe('string');
         expect(DISLIKES.includes(val)).toBe(true);
       });
+    });
+  });
+
+  describe('#getBioText', () => {
+    it('#should return a string of hobbiesString and dislikesString', () => {
+      spyOn<any>(service, 'getHobbiesString').and.returnValue(true);
+      spyOn<any>(service, 'getDislikesString').and.returnValue(true);
+      service['getBioText']([], []);
+      expect(service['getHobbiesString']).toHaveBeenCalled();
+      expect(service['getDislikesString']).toHaveBeenCalled();
+    });
+
+    it('should return a DoggoTranslated string', () => {
+      spyOn<any>(service, 'translateText').and.returnValue(true);
+      service['getBioText']([], []);
+      expect(service['translateText']).toHaveBeenCalled();
+    });
+  });
+
+  describe('#translateText', () => {
+    it('should delegate to translation service', () => {
+      spyOn(service['translationService'], 'translate').and.returnValue(true);
+      service['translateText']('');
+      expect(service['translationService'].translate).toHaveBeenCalled();
+    });
+  });
+
+  describe('#getHobbiesString', () => {
+    it('should call #getDescribedSentence with a sensible prefix', () => {
+      spyOn<any>(service, 'getDescribedListSentence').and.returnValue(true);
+      service['getHobbiesString']([]);
+      expect(service['getDescribedListSentence']).toHaveBeenCalledWith('I enjoy', []);
+    });
+  });
+
+  describe('#getDislikesString', () => {
+    it('should call #getDescribedSentence with a sensible prefix', () => {
+      spyOn<any>(service, 'getDescribedListSentence').and.returnValue(true);
+      service['getDislikesString']([]);
+      expect(service['getDescribedListSentence']).toHaveBeenCalledWith('I\'m really not a fan of', [], 'or');
     });
   });
 
