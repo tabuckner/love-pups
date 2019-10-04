@@ -45,8 +45,8 @@ describe('DogEntitiesService', () => {
 
   describe('#getDogEntities', () => {
     beforeEach(() => {
-      spyOn(service['randomUserService'], 'getRandomPerson').and.returnValue(of({ person: true }));
       spyOn(service['randomUserService'], 'getRandomPeople').and.returnValue(of([{ person: true }, { person: true }, { person: true }]));
+      spyOn(service['dogImageService'], 'getRandomImages').and.returnValue(of([true, true, true]));
       spyOn(service['bioService'], 'getBio').and.returnValue({ bio: true });
     });
 

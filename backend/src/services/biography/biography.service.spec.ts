@@ -118,7 +118,7 @@ describe('BiographyService', () => {
       const mockDescription = 'I enjoy';
       const mockHobbies = ['laughing', 'crying', 'eating', 'fighting'];
       const testEval = service['getDescribedListSentence'](mockDescription, mockHobbies);
-      expect(testEval.replace(/[^a]/g, '').length).toBe(3)
+      expect(testEval.replace(/[^a]/g, '').length).toBe(3);
     });
 
     it('should have a configurable joiner', () => {

@@ -1,6 +1,6 @@
 import { Injectable, HttpService } from '@nestjs/common';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DogImageWithBreed } from './models/dog-image-with-breed.model';
 import { DogImageResponse } from './models/dog-image-response.model';
 import { DogImagesResponse } from './models/dog-images-response.model';
@@ -25,7 +25,6 @@ export class DogImageService {
 
   public getRandomImages(quantity: number): Observable<DogImageWithBreed[]> {
     const url = `${this.getRandomImageEndpoint()}/${quantity}`;
-    console.warn(url);
     return this.http.get<DogImagesResponse>(url)
       .pipe(map(res => {
         return res.data.message.map(eachImageUrl => {
