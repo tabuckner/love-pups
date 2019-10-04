@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BiographyService } from './biography.service';
 import { TranslationModule } from '../translation/translation.module';
-import { HOBBIES } from '../shared/constants/hobbies';
-import { DISLIKES } from '../shared/constants/dislikes';
+import { HOBBIES } from '../../shared/constants/hobbies';
+import { DISLIKES } from '../../shared/constants/dislikes';
 
 describe('BiographyService', () => {
   let service: BiographyService;
