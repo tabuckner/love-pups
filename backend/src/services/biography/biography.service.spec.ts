@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BiographyService } from './biography.service';
 import { TranslationModule } from '../translation/translation.module';
-import { HOBBIES } from '../shared/constants/hobbies';
-import { DISLIKES } from '../shared/constants/dislikes';
+import { HOBBIES } from '../../shared/constants/hobbies';
+import { DISLIKES } from '../../shared/constants/dislikes';
 
 describe('BiographyService', () => {
   let service: BiographyService;
@@ -118,7 +118,7 @@ describe('BiographyService', () => {
       const mockDescription = 'I enjoy';
       const mockHobbies = ['laughing', 'crying', 'eating', 'fighting'];
       const testEval = service['getDescribedListSentence'](mockDescription, mockHobbies);
-      expect(testEval.replace(/[^a]/g, '').length).toBe(3)
+      expect(testEval.replace(/[^a]/g, '').length).toBe(3);
     });
 
     it('should have a configurable joiner', () => {

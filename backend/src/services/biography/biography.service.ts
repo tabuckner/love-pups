@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Biography } from './biography.interface';
 import { TranslationService } from '../translation/translation.service';
-import { HOBBIES } from '../shared/constants/hobbies';
-import { DISLIKES } from '../shared/constants/dislikes';
+import { HOBBIES } from '../../shared/constants/hobbies';
+import { DISLIKES } from '../../shared/constants/dislikes';
 
 @Injectable()
 export class BiographyService {

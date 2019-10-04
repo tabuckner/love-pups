@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DogsController } from './dogs.controller';
-import { BiographyModule } from '../biography/biography.module';
-import { RandomUserModule } from '../random-user/random-user.module';
+import { DogEntitiesModule } from '../../services/dog-entities/dog-entities.module';
 
 @Module({
   controllers: [DogsController],
   imports: [
-    BiographyModule,
-    RandomUserModule,
+    DogEntitiesModule,
   ],
 })
 export class DogsModule {}

@@ -520,7 +520,7 @@ export const HOBBIES = [
   'Mixing drinks',
   'Writing',
   'Photography',
-  'tabletops games', 
+  'tabletops games',
   'video games',
   'Road trips',
   'red,',
