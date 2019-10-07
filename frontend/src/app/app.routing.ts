@@ -5,6 +5,7 @@ const DEFAULT_ROUTE = 'home';
 
 const routes: Routes = [
   { path: 'home', loadChildren: 'src/app/home/home.module#HomeModule' },
+  { path: 'feed', loadChildren: 'src/app/feed/feed.module#FeedModule' },
   { path: '', redirectTo: DEFAULT_ROUTE, pathMatch: 'full' },
   { path: '**', redirectTo: DEFAULT_ROUTE, pathMatch: 'full' },
 ];

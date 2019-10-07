@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeBottomSheetComponent } from './home-bottom-sheet.component';
 import { HOME_MAT_IMPORTS } from '../home.module';
+import { MatBottomSheetRef } from '@angular/material';
 
 describe('HomeBottomSheetComponent', () => {
   let component: HomeBottomSheetComponent;
@@ -12,6 +13,9 @@ describe('HomeBottomSheetComponent', () => {
       declarations: [ HomeBottomSheetComponent ],
       imports: [
         ...HOME_MAT_IMPORTS
+      ],
+      providers: [
+        { provide: MatBottomSheetRef, useValue: {} }
       ]
     })
     .compileComponents();

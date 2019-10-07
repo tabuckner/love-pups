@@ -1,0 +1,73 @@
+.profile-card {
+  background-size: cover;
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 16px;
+  max-height: 600px; // FIXME: THIS IS NOT ACCEPTABLE.
+  height: 100vh;
+  max-width: 350px;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__info {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.66), transparent);
+    color: white;
+    padding: 24px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    line-height: 38px;
+    display: flex;
+    width: 100%;
+  }
+
+  &__subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__name {
+    margin-right: 8px;
+  }
+
+  &__age {
+    margin-right: 8px;
+  }
+
+  &__gender {
+    opacity: 0.54;
+    width: 24px;
+    height: 24px;
+
+    app-gender-icons {
+      stroke: white;
+    }
+  }
+
+  &__breed {
+    height: 16px;
+    opacity: 0.54;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 16px;
+  }
+
+  &__info-button {
+  }
+
+  &__bio {
+    opacity: 0.77;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 16px;
+  }
+}
