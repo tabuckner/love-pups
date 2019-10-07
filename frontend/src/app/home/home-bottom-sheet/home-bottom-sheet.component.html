@@ -3,7 +3,10 @@
   <div class="home-bottom-sheet__header">Welcome to {{ data?.appName || 'The App' }}</div>
   <div class="home-bottom-sheet__text">The little app that let's you enjoy photos of pups anytime, anywhere.</div>
   <div class="home-bottom-sheet__interactions">
-    <button mat-raised-button color="primary" class="home-bottom-sheet__anonymous-login">Let's Go</button>
+    <button mat-raised-button color="primary"
+      class="home-bottom-sheet__anonymous-login"
+      routerLink="/feed"
+      (click)="onClickFeed()">Let's Go</button>
     <div class="home-bottom-sheet__log-in">
       <div class="home-bottom-sheet__log-in__text">Have an account?</div>
       <div class="home-bottom-sheet__log-in__button"><a href="">Log in</a></div>

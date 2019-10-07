@@ -1,0 +1,19 @@
+<div class="profile-card" *ngIf="dog" [ngStyle]="{backgroundImage: 'url(' + dog.image.imageUrl + ')'}">
+  <div class="profile-card__spacer"></div>
+  <div class="profile-card__info">
+    <div class="profile-card__title">
+      <div class="profile-card__name">{{ dog.name.first }},</div>
+      <div class="profile-card__age">{{ dogAge }}</div>
+      <div class="profile-card__gender">
+        <app-gender-icons [gender]="dog.gender"></app-gender-icons>
+      </div>
+    </div>
+    <div class="profile-card__subtitle">
+      <div class="profile-card__breed">{{ dog.image.breed }}</div>
+      <div class="profile-card__info-button">
+        <button mat-icon-button><mat-icon>info</mat-icon></button>
+      </div>
+    </div>
+    <div class="profile-card__bio">{{ dog.bio.text }}</div>
+  </div>
+</div>
