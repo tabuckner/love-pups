@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import * as helmet from 'helmet';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import * as pkg from '../package.json';
+const pkg = require(require.resolve('../package.json')); // tslint:disable-line
 const devMode = process.env.NODE_ENV === 'development';
 
 async function bootstrap() {
