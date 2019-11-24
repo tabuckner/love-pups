@@ -5,6 +5,7 @@ class DogCard extends StatelessWidget {
   final DogEntity dog;
   final int index;
   final double _borderRadius = 24;
+  final double _infoSectionHeight = 175;
 
   DogCard({
     @required this.dog,
@@ -84,59 +85,67 @@ class DogCard extends StatelessWidget {
     );
   }
 
-  Widget get _info {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color.fromRGBO(0, 0, 0, .86),
-                Color.fromRGBO(0, 0, 0, 0),
-              ],
+  Widget get _infoSection {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            Color.fromRGBO(0, 0, 0, .86),
+            Color.fromRGBO(0, 0, 0, 0),
+          ],
+        ),
+      ),
+      width: double.infinity,
+      height: this._infoSectionHeight,
+      padding: EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          this._nameRow,
+          this._breedRow,
+          this._bio,
+        ],
+      ),
+    );
+  }
+
+  Widget get _infoIconButtonContainer {
+    return Container(
+      color: Colors.transparent,
+      width: double.infinity,
+      height: this._infoSectionHeight,
+      padding: EdgeInsets.all(24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          ClipOval(
+            child: Material(
+              color: Colors.transparent,
+              child: IconButton(
+                icon: Icon(
+                  Icons.info,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  print('Show Full Page.');
+                },
+              ),
             ),
           ),
-          width: double.infinity,
-          height: 175,
-          padding: EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              this._nameRow,
-              this._breedRow,
-              this._bio,
-            ],
-          ),
-        ),
-        Container(
-          color: Colors.transparent,
-          width: double.infinity,
-          height: 175,
-          padding: EdgeInsets.all(24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              ClipOval(
-                child: Material(
-                  color: Colors.transparent,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.info,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      print('Show Full Page.');
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
+        ],
+      ),
+    );
+  }
+
+  Widget get _infoSectionStack {
+    return Stack(
+      children: [
+        this._infoSection,
+        this._infoIconButtonContainer,
       ],
     );
   }
@@ -153,7 +162,6 @@ class DogCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    final fullName = '${dog.name.first} ${dog.name.last}';
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -167,7 +175,7 @@ class DogCard extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             children: <Widget>[
               this._backgroundImage,
-              this._info,
+              this._infoSectionStack,
             ],
           ),
         ),
