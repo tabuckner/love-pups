@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:love_pups_app/screens/dog_details_screen.dart';
+import 'package:love_pups_app/widgets/components/raised_rounded_icon_button.widget.dart';
 import '../shared/models/dog_entity.model.dart';
 
 class DogCard extends StatelessWidget {
@@ -14,16 +16,19 @@ class DogCard extends StatelessWidget {
 
   Widget get _backgroundImage {
     return Container(
-      child: Image.network(
-        this.dog.image.imageUrl,
-        fit: BoxFit.cover,
+      child: Hero(
+        tag: this.dog.image.imageUrl,
+        child: Image.network(
+          this.dog.image.imageUrl,
+          fit: BoxFit.cover,
+        ),
       ),
       width: double.infinity,
       height: double.infinity,
     );
   }
 
-  Widget get _nameRow {
+  Widget _nameRow({Color textColor, Color iconColor}) {
     return Container(
       height: 38,
       margin: EdgeInsets.only(
@@ -34,7 +39,7 @@ class DogCard extends StatelessWidget {
           Text(
             '${this.dog.name.first}, ${this.ageInHumanYears}',
             style: TextStyle(
-              color: Colors.white,
+              color: textColor,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
@@ -43,7 +48,7 @@ class DogCard extends StatelessWidget {
             margin: EdgeInsets.only(left: 8),
             child: Icon(
               Icons.public,
-              color: Color.fromRGBO(255, 255, 255, 0.56),
+              color: iconColor,
             ),
           )
         ],
@@ -51,7 +56,7 @@ class DogCard extends StatelessWidget {
     );
   }
 
-  Widget get _breedRow {
+  Widget _breedRow({Color textColor}) {
     return Container(
       margin: EdgeInsets.only(
         bottom: 8,
@@ -63,7 +68,7 @@ class DogCard extends StatelessWidget {
           Text(
             this.dog.image.breed,
             style: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 0.56),
+              color: textColor,
               fontSize: 16,
             ),
           ),
@@ -72,18 +77,15 @@ class DogCard extends StatelessWidget {
     );
   }
 
-  Widget get _bio {
-    return FractionallySizedBox(
-      widthFactor: .8,
-      child: Text(
-        this.shortBio,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        softWrap: true,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-        ),
+  Widget _bio({Color textColor, bool summary}) {
+    return Text(
+      summary ? this.shortBio : this.bio,
+      maxLines: summary ? 2 : null,
+      overflow: summary ? TextOverflow.ellipsis : null,
+      softWrap: true,
+      style: TextStyle(
+        color: textColor,
+        fontSize: 16,
       ),
     );
   }
@@ -107,15 +109,26 @@ class DogCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          this._nameRow,
-          this._breedRow,
-          this._bio,
+          this._nameRow(
+            textColor: Colors.white,
+            iconColor: Color.fromRGBO(255, 255, 255, 0.56),
+          ),
+          this._breedRow(
+            textColor: Color.fromRGBO(255, 255, 255, 0.56),
+          ),
+          FractionallySizedBox(
+            widthFactor: .8,
+            child: this._bio(
+              textColor: Colors.white,
+              summary: true,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget get _infoIconButtonContainer {
+  Widget _infoIconButtonContainer(ctx) {
     return Container(
       color: Colors.transparent,
       width: double.infinity,
@@ -134,7 +147,7 @@ class DogCard extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  print('Show Full Page.');
+                  onShowModalBottomSheet(ctx);
                 },
               ),
             ),
@@ -144,11 +157,106 @@ class DogCard extends StatelessWidget {
     );
   }
 
-  Widget get _infoSectionStack {
+  void onShowModalBottomSheet(ctx) {
+    Navigator.push(
+      ctx,
+      MaterialPageRoute(builder: (ctx) => DogDetailsScreen(dog: this.dog)),
+    );
+    // Size screenSize = MediaQuery.of(ctx).size;
+    // showModalBottomSheet(
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.only(
+    //         topLeft: Radius.circular(this._borderRadius),
+    //         topRight: Radius.circular(this._borderRadius),
+    //       ),
+    //     ),
+    //     context: ctx,
+    //     builder: (BuildContext builder) {
+    //       return Container(
+    //         padding: EdgeInsets.symmetric(
+    //           horizontal: 32,
+    //           vertical: 24,
+    //         ),
+    //         height: (screenSize.height / 3) * 2,
+    //         child: Column(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: <Widget>[
+    //             Column(
+    //               children: [
+    //                 this._nameRow(
+    //                   textColor: Colors.black,
+    //                   iconColor: Color.fromRGBO(0, 0, 0, .56),
+    //                 ),
+    //                 this._breedRow(
+    //                   textColor: Color.fromRGBO(0, 0, 0, .56),
+    //                 ),
+    //                 this._bio(
+    //                   textColor: Colors.black,
+    //                   summary: false,
+    //                 )
+    //               ],
+    //             ),
+    //             Row(
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               children: <Widget>[
+    //                 Column(
+    //                   children: <Widget>[
+    //                     RaisedRoundedIconButton(
+    //                       size: 72,
+    //                       backgroundColor: Color.fromRGBO(38, 50, 56, 1),
+    //                       onPressed: () {},
+    //                       iconSize: 36,
+    //                       icon: Icons.thumb_down,
+    //                       elevation: 2,
+    //                       iconColor: Colors.white,
+    //                       iconPadding: 18,
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Text(
+    //                       'NastyBoi',
+    //                       style: TextStyle(
+    //                         color: Color.fromRGBO(38, 50, 56, 1),
+    //                         fontSize: 14,
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //                 SizedBox(width: 24),
+    //                 Column(
+    //                   children: <Widget>[
+    //                     RaisedRoundedIconButton(
+    //                       size: 72,
+    //                       backgroundColor: Color.fromRGBO(255, 51, 102, 1),
+    //                       onPressed: () {},
+    //                       iconSize: 36,
+    //                       icon: Icons.thumb_up,
+    //                       elevation: 2,
+    //                       iconColor: Colors.white,
+    //                       iconPadding: 18,
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Text(
+    //                       'GoodBoi',
+    //                       style: TextStyle(
+    //                         color: Color.fromRGBO(255, 51, 102, 1),
+    //                         fontSize: 14,
+    //                       ),
+    //                     )
+    //                   ],
+    //                 )
+    //               ],
+    //             )
+    //           ],
+    //         ),
+    //       );
+    //     });
+  }
+
+  Widget _infoSectionStack(ctx) {
     return Stack(
       children: [
         this._infoSection,
-        this._infoIconButtonContainer,
+        this._infoIconButtonContainer(ctx),
       ],
     );
   }
@@ -162,9 +270,12 @@ class DogCard extends StatelessWidget {
         : '${this.dog.bio.text.substring(0, maxCharacters)}...';
   }
 
+  String get bio {
+    return this.dog.bio.text;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -178,7 +289,7 @@ class DogCard extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             children: <Widget>[
               this._backgroundImage,
-              this._infoSectionStack,
+              this._infoSectionStack(context),
             ],
           ),
         ),

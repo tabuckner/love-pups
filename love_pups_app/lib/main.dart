@@ -3,6 +3,9 @@ import 'package:love_pups_app/screens/splash_screen.dart';
 
 void main() => runApp(
   MaterialApp(
-    home: SplashScreen(),
+    // home: SplashScreen(),
+    routes: {
+      '/': (ctx) => SplashScreen(),
+    },
   )
 );
