@@ -73,14 +73,17 @@ class DogCard extends StatelessWidget {
   }
 
   Widget get _bio {
-    return Text(
-      this.shortBio,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-      softWrap: true,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 16,
+    return FractionallySizedBox(
+      widthFactor: .8,
+      child: Text(
+        this.shortBio,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        softWrap: true,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+        ),
       ),
     );
   }
@@ -99,7 +102,7 @@ class DogCard extends StatelessWidget {
       ),
       width: double.infinity,
       height: this._infoSectionHeight,
-      padding: EdgeInsets.all(24),
+      padding: EdgeInsets.all(32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
