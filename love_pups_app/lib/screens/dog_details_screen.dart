@@ -73,81 +73,77 @@ class DogDetailsScreen extends StatelessWidget {
     );
   }
 
-Widget get _detailsInfo {
-  return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 32,
-              vertical: 24,
-            ),
-            height: (this._screenSize.height / 3) * 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  children: [
-                    this._nameRow,
-                    this._breedRow,
-                    this._bio
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        RaisedRoundedIconButton(
-                          size: 72,
-                          backgroundColor: Color.fromRGBO(38, 50, 56, 1),
-                          onPressed: () {},
-                          iconSize: 36,
-                          icon: Icons.thumb_down,
-                          elevation: 2,
-                          iconColor: Colors.white,
-                          iconPadding: 18,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          this._badText,
-                          style: TextStyle(
-                            color: Color.fromRGBO(38, 50, 56, 1),
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
+  Widget get _detailsInfo {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 32,
+        vertical: 24,
+      ),
+      height: (this._screenSize.height / 3) * 2,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            children: [this._nameRow, this._breedRow, this._bio],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  RaisedRoundedIconButton(
+                    size: 72,
+                    backgroundColor: Color.fromRGBO(38, 50, 56, 1),
+                    onPressed: () {},
+                    iconSize: 36,
+                    icon: Icons.thumb_down,
+                    elevation: 2,
+                    iconColor: Colors.white,
+                    iconPadding: 18,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    this._badText,
+                    style: TextStyle(
+                      color: Color.fromRGBO(38, 50, 56, 1),
+                      fontSize: 14,
                     ),
-                    SizedBox(width: 24),
-                    Column(
-                      children: <Widget>[
-                        RaisedRoundedIconButton(
-                          size: 72,
-                          backgroundColor: Color.fromRGBO(255, 51, 102, 1),
-                          onPressed: () {},
-                          iconSize: 36,
-                          icon: Icons.thumb_up,
-                          elevation: 2,
-                          iconColor: Colors.white,
-                          iconPadding: 18,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          this._goodText,
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 51, 102, 1),
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
-          );
-}
+                  )
+                ],
+              ),
+              SizedBox(width: 24),
+              Column(
+                children: <Widget>[
+                  RaisedRoundedIconButton(
+                    size: 72,
+                    backgroundColor: Color.fromRGBO(255, 51, 102, 1),
+                    onPressed: () {},
+                    iconSize: 36,
+                    icon: Icons.thumb_up,
+                    elevation: 2,
+                    iconColor: Colors.white,
+                    iconPadding: 18,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    this._goodText,
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 51, 102, 1),
+                      fontSize: 14,
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
-String get _goodText => this.dog.gender == 'female' ? 'GoodGurl' : 'GoodBoi';
+  String get _goodText => this.dog.gender == 'female' ? 'GoodGurl' : 'GoodBoi';
 
-String get _badText => this.dog.gender == 'female' ? 'NastyGurl' : 'NastyBoi';
+  String get _badText => this.dog.gender == 'female' ? 'NastyGurl' : 'NastyBoi';
 
   @override
   Widget build(BuildContext context) {
