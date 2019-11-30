@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:love_pups_app/screens/dog_details_screen.dart';
 import 'package:love_pups_app/widgets/components/raised_rounded_icon_button.widget.dart';
 import '../shared/models/dog_entity.model.dart';
 
@@ -15,9 +16,12 @@ class DogCard extends StatelessWidget {
 
   Widget get _backgroundImage {
     return Container(
-      child: Image.network(
-        this.dog.image.imageUrl,
-        fit: BoxFit.cover,
+      child: Hero(
+        tag: this.dog.image.imageUrl,
+        child: Image.network(
+          this.dog.image.imageUrl,
+          fit: BoxFit.cover,
+        ),
       ),
       width: double.infinity,
       height: double.infinity,
@@ -154,94 +158,98 @@ class DogCard extends StatelessWidget {
   }
 
   void onShowModalBottomSheet(ctx) {
-    Size screenSize = MediaQuery.of(ctx).size;
-    showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(this._borderRadius),
-            topRight: Radius.circular(this._borderRadius),
-          ),
-        ),
-        context: ctx,
-        builder: (BuildContext builder) {
-          return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 32,
-              vertical: 24,
-            ),
-            height: (screenSize.height / 3) * 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  children: [
-                    this._nameRow(
-                      textColor: Colors.black,
-                      iconColor: Color.fromRGBO(0, 0, 0, .56),
-                    ),
-                    this._breedRow(
-                      textColor: Color.fromRGBO(0, 0, 0, .56),
-                    ),
-                    this._bio(
-                      textColor: Colors.black,
-                      summary: false,
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        RaisedRoundedIconButton(
-                          size: 72,
-                          backgroundColor: Color.fromRGBO(38, 50, 56, 1),
-                          onPressed: () {},
-                          iconSize: 36,
-                          icon: Icons.thumb_down,
-                          elevation: 2,
-                          iconColor: Colors.white,
-                          iconPadding: 18,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'NastyBoi',
-                          style: TextStyle(
-                            color: Color.fromRGBO(38, 50, 56, 1),
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(width: 24),
-                    Column(
-                      children: <Widget>[
-                        RaisedRoundedIconButton(
-                          size: 72,
-                          backgroundColor: Color.fromRGBO(255, 51, 102, 1),
-                          onPressed: () {},
-                          iconSize: 36,
-                          icon: Icons.thumb_up,
-                          elevation: 2,
-                          iconColor: Colors.white,
-                          iconPadding: 18,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'GoodBoi',
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 51, 102, 1),
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
-          );
-        });
+    Navigator.push(
+      ctx,
+      MaterialPageRoute(builder: (ctx) => DogDetailsScreen(dog: this.dog)),
+    );
+    // Size screenSize = MediaQuery.of(ctx).size;
+    // showModalBottomSheet(
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.only(
+    //         topLeft: Radius.circular(this._borderRadius),
+    //         topRight: Radius.circular(this._borderRadius),
+    //       ),
+    //     ),
+    //     context: ctx,
+    //     builder: (BuildContext builder) {
+    //       return Container(
+    //         padding: EdgeInsets.symmetric(
+    //           horizontal: 32,
+    //           vertical: 24,
+    //         ),
+    //         height: (screenSize.height / 3) * 2,
+    //         child: Column(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: <Widget>[
+    //             Column(
+    //               children: [
+    //                 this._nameRow(
+    //                   textColor: Colors.black,
+    //                   iconColor: Color.fromRGBO(0, 0, 0, .56),
+    //                 ),
+    //                 this._breedRow(
+    //                   textColor: Color.fromRGBO(0, 0, 0, .56),
+    //                 ),
+    //                 this._bio(
+    //                   textColor: Colors.black,
+    //                   summary: false,
+    //                 )
+    //               ],
+    //             ),
+    //             Row(
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               children: <Widget>[
+    //                 Column(
+    //                   children: <Widget>[
+    //                     RaisedRoundedIconButton(
+    //                       size: 72,
+    //                       backgroundColor: Color.fromRGBO(38, 50, 56, 1),
+    //                       onPressed: () {},
+    //                       iconSize: 36,
+    //                       icon: Icons.thumb_down,
+    //                       elevation: 2,
+    //                       iconColor: Colors.white,
+    //                       iconPadding: 18,
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Text(
+    //                       'NastyBoi',
+    //                       style: TextStyle(
+    //                         color: Color.fromRGBO(38, 50, 56, 1),
+    //                         fontSize: 14,
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //                 SizedBox(width: 24),
+    //                 Column(
+    //                   children: <Widget>[
+    //                     RaisedRoundedIconButton(
+    //                       size: 72,
+    //                       backgroundColor: Color.fromRGBO(255, 51, 102, 1),
+    //                       onPressed: () {},
+    //                       iconSize: 36,
+    //                       icon: Icons.thumb_up,
+    //                       elevation: 2,
+    //                       iconColor: Colors.white,
+    //                       iconPadding: 18,
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Text(
+    //                       'GoodBoi',
+    //                       style: TextStyle(
+    //                         color: Color.fromRGBO(255, 51, 102, 1),
+    //                         fontSize: 14,
+    //                       ),
+    //                     )
+    //                   ],
+    //                 )
+    //               ],
+    //             )
+    //           ],
+    //         ),
+    //       );
+    //     });
   }
 
   Widget _infoSectionStack(ctx) {
